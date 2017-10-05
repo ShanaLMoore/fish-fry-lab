@@ -30,22 +30,26 @@ int main(void) {
     total_water = 500;
     rate = .1;
     
-    /*do {
-        total_water = (total_water - (total_water * rate)) + additional_water;
-        printf("The tank still has %lf gallons reminaing.\n", total_water);
-    } while (total_water > 100); */
-    
     while (total_water > 100) {
         // Calculate remaining water per hour
         total_water = (total_water - (total_water * rate)) + additional_water;
         
         // Display the number of gallons remaining after each hr
         printf("The tank still has %lf gallons reminaing.\n", total_water);
-        hour++;
+        
+        // increment hour
+        hour ++;
+        
+        // if total_water > 100 && hour < 24, let's eat!
+        if (hour > 24) {
+            printf("Get out the BBQ and let's eat fish!\n");
+            break;
+        }
+        // if total_water < 100, all of the fish die
+        else if (total_water < 100) {
+            printf("Out of water at hour %d when remaining gallons were: %.2lf. If no action is taken, all the fish will die!\n", hour, total_water);
+        }
     }
     
-    // if total_water < 100, all of the fish die
-    printf("You will be out of water at hour %di when remaining gallons were: %.2f. If no action is taken, all the fish will die.\n", hour, total_water);
-
     return 0;
 }
